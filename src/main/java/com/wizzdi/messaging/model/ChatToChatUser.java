@@ -6,32 +6,32 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class ChatToParticipant extends Basic {
+public class ChatToChatUser extends Basic {
 
 
 	private boolean pendingInvite;
 	@ManyToOne(targetEntity = Chat.class)
 	private Chat chat;
-	@ManyToOne(targetEntity = Participant.class)
-	private  Participant participant;
+	@ManyToOne(targetEntity = ChatUser.class)
+	private ChatUser chatUser;
 
 	@ManyToOne(targetEntity = Chat.class)
 	public Chat getChat() {
 		return chat;
 	}
 
-	public <T extends ChatToParticipant> T setChat(Chat chat) {
+	public <T extends ChatToChatUser> T setChat(Chat chat) {
 		this.chat = chat;
 		return (T) this;
 	}
 
-	@ManyToOne(targetEntity = Participant.class)
-	public Participant getParticipant() {
-		return participant;
+	@ManyToOne(targetEntity = ChatUser.class)
+	public ChatUser getChatUser() {
+		return chatUser;
 	}
 
-	public <T extends ChatToParticipant> T setParticipant(Participant participant) {
-		this.participant = participant;
+	public <T extends ChatToChatUser> T setChatUser(ChatUser participant) {
+		this.chatUser = participant;
 		return (T) this;
 	}
 
@@ -39,7 +39,7 @@ public class ChatToParticipant extends Basic {
 		return pendingInvite;
 	}
 
-	public <T extends ChatToParticipant> T setPendingInvite(boolean pendingInvite) {
+	public <T extends ChatToChatUser> T setPendingInvite(boolean pendingInvite) {
 		this.pendingInvite = pendingInvite;
 		return (T) this;
 	}

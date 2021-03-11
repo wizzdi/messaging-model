@@ -10,8 +10,8 @@ import javax.persistence.ManyToOne;
 public class Chat extends Basic {
 	@ManyToOne(targetEntity = Baseclass.class)
 	private Baseclass security;
-	@ManyToOne(targetEntity = Participant.class)
-	private Participant participant;
+	@ManyToOne(targetEntity = ChatUser.class)
+	private ChatUser owner;
 
 
 	@ManyToOne(targetEntity = Baseclass.class)
@@ -24,13 +24,13 @@ public class Chat extends Basic {
 		return (T) this;
 	}
 
-	@ManyToOne(targetEntity = Participant.class)
-	public Participant getParticipant() {
-		return participant;
+	@ManyToOne(targetEntity = ChatUser.class)
+	public ChatUser getOwner() {
+		return owner;
 	}
 
-	public <T extends Chat> T setParticipant(Participant participant) {
-		this.participant = participant;
+	public <T extends Chat> T setOwner(ChatUser participant) {
+		this.owner = participant;
 		return (T) this;
 	}
 }

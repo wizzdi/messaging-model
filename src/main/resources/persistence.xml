@@ -6,8 +6,8 @@
 
         <class>com.wizzdi.messaging.model.Message</class>
         <class>com.wizzdi.messaging.model.Chat</class>
-        <class>com.wizzdi.messaging.model.ChatToParticipant</class>
-        <class>com.wizzdi.messaging.model.Participant</class>
+        <class>com.wizzdi.messaging.model.ChatToChatUser</class>
+        <class>com.wizzdi.messaging.model.ChatUser</class>
         <class>com.wizzdi.messaging.model.converters.JsonConverter</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
