@@ -5,8 +5,11 @@
     <persistence-unit name="primary">
 
         <class>com.wizzdi.messaging.model.Message</class>
-        <class>com.flexicore.model.Baseclass</class>
-        <class>com.flexicore.model.User</class>
+        <class>com.wizzdi.messaging.model.Chat</class>
+        <class>com.wizzdi.messaging.model.ChatToParticipant</class>
+        <class>com.wizzdi.messaging.model.Participant</class>
+        <class>com.wizzdi.messaging.model.converters.JsonConverter</class>
+
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
     </persistence-unit>
 
