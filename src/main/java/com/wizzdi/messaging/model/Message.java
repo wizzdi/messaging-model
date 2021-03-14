@@ -6,16 +6,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.flexicore.model.Basic;
 import com.wizzdi.messaging.model.converters.JsonConverter;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @Entity
 public class Message extends Basic {
-
+public static final String CHATUSERS_FIELD="chatUsers";
+public static final String CONTENT_FIELD="content";
+private static final String MEDIA_FIELD="media";
 	@Column(columnDefinition = "jsonb")
 	@Convert(converter = JsonConverter.class)
 	@JsonIgnore
@@ -65,6 +66,37 @@ public class Message extends Basic {
 
 	public <T extends Message> T setSender(ChatUser sender) {
 		this.sender = sender;
+		return (T) this;
+	}
+
+	@Transient
+	public Set<String> getMedia(){
+		return (Set<String>) other.get(MEDIA_FIELD);
+	}
+
+	public <T extends Message> T setMedia(Set<String> media) {
+		other.put(MEDIA_FIELD,media);
+		return (T) this;
+	}
+
+	@Transient
+	public String getContent(){
+		return (String) other.get(CONTENT_FIELD);
+	}
+
+	public <T extends Message> T setContent(String content) {
+		other.put(CONTENT_FIELD,content);
+		return (T) this;
+	}
+
+
+	@Transient
+	public Map<String, OffsetDateTime> getChatUsers(){
+		return (Map<String, OffsetDateTime>) other.get(CHATUSERS_FIELD);
+	}
+
+	public <T extends Message> T setChatUsers(Map<String, OffsetDateTime> chatUsers) {
+		other.put(CHATUSERS_FIELD,chatUsers);
 		return (T) this;
 	}
 }

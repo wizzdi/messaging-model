@@ -9,6 +9,7 @@
         <class>com.wizzdi.messaging.model.ChatToChatUser</class>
         <class>com.wizzdi.messaging.model.ChatUser</class>
         <class>com.wizzdi.messaging.model.converters.JsonConverter</class>
+        <class>com.wizzdi.messaging.model.MessageReceiverDevice</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
     </persistence-unit>
