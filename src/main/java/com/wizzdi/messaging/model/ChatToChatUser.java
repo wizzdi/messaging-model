@@ -14,6 +14,7 @@ public class ChatToChatUser extends Basic {
 	private Chat chat;
 	@ManyToOne(targetEntity = ChatUser.class)
 	private ChatUser chatUser;
+	private boolean disabled;
 
 	@ManyToOne(targetEntity = Chat.class)
 	public Chat getChat() {
@@ -41,6 +42,15 @@ public class ChatToChatUser extends Basic {
 
 	public <T extends ChatToChatUser> T setPendingInvite(boolean pendingInvite) {
 		this.pendingInvite = pendingInvite;
+		return (T) this;
+	}
+
+	public boolean isDisabled() {
+		return disabled;
+	}
+
+	public <T extends ChatToChatUser> T setDisabled(boolean disabled) {
+		this.disabled = disabled;
 		return (T) this;
 	}
 }
