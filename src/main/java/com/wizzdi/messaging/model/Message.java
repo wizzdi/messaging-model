@@ -9,6 +9,7 @@ import com.wizzdi.messaging.model.converters.JsonConverter;
 import javax.persistence.*;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -45,7 +46,7 @@ private static final String MEDIA_FIELD="media";
 	}
 
 	public <T extends Message> T setOther(Map<String, Object> other) {
-		this.other = other;
+		this.other.putAll(other);
 		return (T) this;
 	}
 
@@ -70,11 +71,11 @@ private static final String MEDIA_FIELD="media";
 	}
 
 	@Transient
-	public Set<String> getMedia(){
-		return (Set<String>) other.get(MEDIA_FIELD);
+	public List<String> getMedia(){
+		return (List<String>) other.get(MEDIA_FIELD);
 	}
 
-	public <T extends Message> T setMedia(Set<String> media) {
+	public <T extends Message> T setMedia(List<String> media) {
 		other.put(MEDIA_FIELD,media);
 		return (T) this;
 	}
