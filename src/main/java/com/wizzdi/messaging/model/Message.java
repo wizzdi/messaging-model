@@ -11,7 +11,6 @@ import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Entity
 public class Message extends Basic {
@@ -33,14 +32,10 @@ private static final String MEDIA_FIELD="media";
 		other.put(key, val);
 	}
 
-	@JsonAnyGetter
-	public Object get(String key) {
-		return other.get(key);
-	}
 
 	@Column(columnDefinition = "jsonb")
 	@Convert(converter = JsonConverter.class)
-	@JsonIgnore
+	@JsonAnyGetter
 	public Map<String, Object> getOther() {
 		return other;
 	}
