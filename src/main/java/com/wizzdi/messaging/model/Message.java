@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.flexicore.model.Basic;
-import com.wizzdi.messaging.model.converters.JsonConverter;
+import com.wizzdi.dynamic.annotations.service.TransformAnnotations;
+import com.wizzdi.dynamic.properties.converter.DynamicColumnDefinition;
+import com.wizzdi.dynamic.properties.converter.JsonConverter;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
@@ -12,12 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@TransformAnnotations
 @Entity
+@Access(AccessType.PROPERTY)
 public class Message extends Basic {
 public static final String CHATUSERS_FIELD="chatUsers";
 public static final String CONTENT_FIELD="content";
 private static final String MEDIA_FIELD="media";
-	@Column(columnDefinition = "jsonb")
 	@Convert(converter = JsonConverter.class)
 	@JsonIgnore
 	private Map<String, Object> other = new HashMap<>();
@@ -33,15 +36,22 @@ private static final String MEDIA_FIELD="media";
 	}
 
 
+	@DynamicColumnDefinition
 	@Column(columnDefinition = "jsonb")
 	@Convert(converter = JsonConverter.class)
-	@JsonAnyGetter
+	@JsonIgnore
 	public Map<String, Object> getOther() {
 		return other;
 	}
 
+	@JsonAnyGetter
+	public Map<String, Object> any() {
+		return other;
+	}
+
+
 	public <T extends Message> T setOther(Map<String, Object> other) {
-		this.other.putAll(other);
+		this.other= other;
 		return (T) this;
 	}
 
