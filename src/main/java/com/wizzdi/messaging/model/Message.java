@@ -20,7 +20,7 @@ import java.util.Map;
 public class Message extends Basic {
 public static final String CHATUSERS_FIELD="chatUsers";
 public static final String CONTENT_FIELD="content";
-private static final String MEDIA_FIELD="media";
+public static final String MEDIA_FIELD="media";
 	@Convert(converter = JsonConverter.class)
 	@JsonIgnore
 	private Map<String, Object> other = new HashMap<>();
