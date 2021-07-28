@@ -3,6 +3,7 @@ package com.wizzdi.messaging.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.flexicore.model.Baseclass;
 import com.flexicore.model.Basic;
+import com.flexicore.model.SecuredBasic;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -11,25 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Chat extends Basic {
-	@ManyToOne(targetEntity = Baseclass.class)
-	private Baseclass security;
+public class Chat extends SecuredBasic {
+
 	@ManyToOne(targetEntity = ChatUser.class)
 	private ChatUser owner;
 	@JsonIgnore
 	@OneToMany(targetEntity = ChatToChatUser.class,mappedBy = "chat")
 	private List<ChatToChatUser> chatToChatUsers=new ArrayList<>();
 
-
-	@ManyToOne(targetEntity = Baseclass.class)
-	public Baseclass getSecurity() {
-		return security;
-	}
-
-	public <T extends Chat> T setSecurity(Baseclass security) {
-		this.security = security;
-		return (T) this;
-	}
 
 	@ManyToOne(targetEntity = ChatUser.class)
 	public ChatUser getOwner() {

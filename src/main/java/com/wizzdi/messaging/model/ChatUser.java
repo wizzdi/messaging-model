@@ -1,24 +1,10 @@
 package com.wizzdi.messaging.model;
 
-import com.flexicore.model.Baseclass;
-import com.flexicore.model.Basic;
+import com.flexicore.model.SecuredBasic;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
 @Entity
-public class ChatUser extends Basic {
+public class ChatUser extends SecuredBasic {
 
-	@ManyToOne(targetEntity = Baseclass.class)
-	private Baseclass security;
-
-	@ManyToOne(targetEntity = Baseclass.class)
-	public Baseclass getSecurity() {
-		return security;
-	}
-
-	public <T extends ChatUser> T setSecurity(Baseclass security) {
-		this.security = security;
-		return (T) this;
-	}
 }
