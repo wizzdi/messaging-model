@@ -52,6 +52,20 @@ public static final String MEDIA_FIELD="media";
 
 	public <T extends Message> T setOther(Map<String, Object> other) {
 		this.other= other;
+		if(other!=null){
+			Object o = other.get(CHATUSERS_FIELD);
+			if(o instanceof Map){
+				Map<?,?> map= (Map<?, ?>) o;
+				for (Map.Entry entry : map.entrySet()) {
+					if(entry.getValue() instanceof String){
+						OffsetDateTime date=OffsetDateTime.parse((String)entry.getValue());
+						entry.setValue(date);
+					}
+				}
+
+			}
+
+		}
 		return (T) this;
 	}
 
